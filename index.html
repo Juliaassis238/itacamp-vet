@@ -37,7 +37,7 @@
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 92px; }
-    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    body { margin: 0; color: var(--ink); background-color: #eaf3f8; background-image: url('assets/itacamp-fundo-patinhas-claro-site.webp'); background-position: center top; background-repeat: repeat; background-size: 1000px auto; font-family: var(--sans); -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
     button { font: inherit; }
@@ -90,7 +90,7 @@
     .hero-photo-note { position: absolute; right: 24px; bottom: 15px; z-index: 1; color: rgba(255,255,255,.72); font-size: .68rem; letter-spacing: .04em; }
 
     /* Mascote */
-    .mascot-section { padding: 52px 0; background: var(--paper); }
+    .mascot-section { padding: 52px 0; background: rgba(251,248,243,.93); }
     .mascot-layout { position: relative; isolation: isolate; display: grid; grid-template-columns: 1fr; justify-items: center; gap: 12px; overflow: hidden; padding: 34px clamp(24px, 6vw, 78px); border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(120deg, #f1eee7 0%, #fbf9f4 56%, #edf2f3 100%); }
     .mascot-layout::before { position: absolute; top: -95px; right: -70px; z-index: -1; width: 300px; height: 300px; border: 1px solid rgba(18,61,99,.10); border-radius: 50%; content: ''; }
     .mascot-art { position: relative; display: grid; width: min(100%, 430px); min-height: 320px; align-items: end; justify-items: center; }
@@ -118,7 +118,7 @@
 
 
     /* Faixa */
-    .service-ribbon { position: relative; z-index: 2; margin-top: -1px; background: var(--navy); }
+    .service-ribbon { position: relative; z-index: 2; margin-top: -1px; background-color: var(--navy); background-image: linear-gradient(rgba(18,61,99,.90), rgba(18,61,99,.90)), url('assets/itacamp-fundo-patinhas-claro-site.webp'); background-position: center, center top; background-repeat: repeat; background-size: auto, 1000px auto; }
     .ribbon-inner { display: flex; min-height: 76px; align-items: center; justify-content: space-between; gap: 20px; color: white; }
     .ribbon-label { color: #d9b395; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
     .ribbon-items { display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: .91rem; font-weight: 600; }
@@ -126,7 +126,7 @@
     .ribbon-items span::before { width: 6px; height: 6px; border-radius: 50%; content: ''; background: var(--orange); }
 
     /* Serviços */
-    .services { background: var(--paper); }
+    .services { background: rgba(251,248,243,.93); }
     .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .service-card { position: relative; min-height: 220px; padding: 29px; border: 1px solid var(--line); border-radius: 13px; background: linear-gradient(150deg, #fff 0%, #fcfaf7 100%); transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
     .service-card::before { position: absolute; top: -1px; left: 24px; right: 24px; height: 2px; content: ''; background: var(--orange); }
@@ -136,7 +136,7 @@
     .service-card p { margin: 0; color: var(--muted); font-size: .93rem; line-height: 1.65; }
 
     /* Sobre e fotografias reais */
-    .about { overflow: hidden; background: var(--blue-pale); }
+    .about { overflow: hidden; background: rgba(237,242,243,.93); }
     .about-grid { display: grid; grid-template-columns: .95fr 1.05fr; align-items: center; gap: clamp(42px, 8vw, 100px); }
     .about-visual { position: relative; padding: 0 18px 18px 0; }
     .about-visual::after { position: absolute; right: 0; bottom: 0; z-index: 0; width: 70%; height: 68%; border-radius: 24px; content: ''; background: var(--orange); }
@@ -148,7 +148,7 @@
     .about-name strong { display: block; color: var(--navy); font: 700 1rem var(--display); }
     .about-name span { display: block; margin-top: 5px; color: var(--muted); font-size: .88rem; line-height: 1.55; }
 
-    .gallery { padding-top: 80px; background: white; }
+    .gallery { padding-top: 80px; background: rgba(255,255,255,.92); }
     .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 18px; }
     .gallery-card { display: flex; flex-direction: column; margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 13px; background: white; box-shadow: 0 10px 28px rgba(24,48,71,.045); }
     .gallery-card img { width: 100%; height: 245px; object-fit: cover; object-position: center; background: #f5f8fa; }
@@ -159,7 +159,7 @@
     .gallery-caption strong { display: block; margin-bottom: 4px; color: var(--navy); font: 600 1.2rem/1.1 var(--editorial); }
 
     /* Localização e contato */
-    .location { background: var(--paper); }
+    .location { background: rgba(251,248,243,.93); }
     .location-grid { display: grid; grid-template-columns: .82fr 1.18fr; align-items: stretch; gap: 42px; }
     .address-card { padding: 32px; border: 1px solid var(--line); border-radius: 14px; background: white; box-shadow: 0 14px 38px rgba(24,48,71,.06); }
     .address-card h3 { margin: 0 0 8px; color: var(--navy); font: 600 1.65rem/1 var(--editorial); }
@@ -191,11 +191,11 @@
     .map-preview-info strong { display: block; color: var(--navy); font: 600 1.25rem/1 var(--editorial); }
     .map-preview-info span { display: block; margin-top: 4px; color: var(--muted); font-size: .83rem; }
     .map-preview-card .button { flex: 0 0 auto; }
-    .contact-strip { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 28px; padding: 28px 32px; border-left: 2px solid var(--orange); border-radius: 12px; color: white; background: var(--navy); }
+    .contact-strip { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 28px; padding: 28px 32px; border-left: 2px solid var(--orange); border-radius: 12px; color: white; background-color: var(--navy); background-image: linear-gradient(rgba(18,61,99,.90), rgba(18,61,99,.90)), url('assets/itacamp-fundo-patinhas-claro-site.webp'); background-position: center, center top; background-repeat: repeat; background-size: auto, 1000px auto; }
     .contact-strip h3 { margin: 0 0 6px; font: 600 1.6rem/1 var(--editorial); }
     .contact-strip p { margin: 0; color: rgba(255,255,255,.76); font-size: .92rem; }
 
-    footer { padding: 34px 0; border-top: 1px solid var(--line); background: white; }
+    footer { padding: 34px 0; border-top: 1px solid var(--line); background: rgba(255,255,255,.94); }
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
     .footer-copy { color: var(--muted); font-size: .83rem; line-height: 1.6; }
     .footer-social { display: inline-flex; align-items: center; gap: 8px; color: var(--navy); font-size: .88rem; font-weight: 700; }
