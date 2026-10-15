@@ -75,7 +75,7 @@
 
     /* Destaque */
     .hero { position: relative; display: flex; min-height: min(780px, 100svh); align-items: center; overflow: hidden; padding: 130px 0 74px; color: white; background: var(--navy-deep) url('assets/itacamp-hero-desktop-safe.webp') right center / auto 100% no-repeat; }
-    .hero::before { position: absolute; inset: 0; content: ''; background: linear-gradient(90deg, rgba(8, 35, 59, .94) 0%, rgba(11, 45, 73, .82) 40%, rgba(11, 45, 73, .24) 100%); }
+    .hero::before { position: absolute; inset: 0; content: ''; background: linear-gradient(90deg, rgba(8, 35, 59, .96) 0%, rgba(11, 45, 73, .88) 43%, rgba(11, 45, 73, .48) 100%), repeating-linear-gradient(135deg, rgba(224,239,249,.018) 0 1px, transparent 1px 7px); }
     .hero::after { display: none; }
     .hero-content { position: relative; z-index: 1; width: min(670px, 72%); }
     .hero .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: #ffd0a9; }
@@ -91,16 +91,15 @@
 
     /* Mascote */
     .mascot-section { padding: 52px 0; background: var(--paper); }
-    .mascot-layout { position: relative; isolation: isolate; display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: clamp(28px, 6vw, 82px); overflow: hidden; padding: 34px clamp(24px, 6vw, 78px); border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(120deg, #f1eee7 0%, #fbf9f4 56%, #edf2f3 100%); }
+    .mascot-layout { position: relative; isolation: isolate; display: grid; grid-template-columns: 1fr; justify-items: center; gap: 12px; overflow: hidden; padding: 34px clamp(24px, 6vw, 78px); border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(120deg, #f1eee7 0%, #fbf9f4 56%, #edf2f3 100%); }
     .mascot-layout::before { position: absolute; top: -95px; right: -70px; z-index: -1; width: 300px; height: 300px; border: 1px solid rgba(18,61,99,.10); border-radius: 50%; content: ''; }
-    .mascot-art { position: relative; display: grid; min-height: 320px; align-items: end; justify-items: center; }
+    .mascot-art { position: relative; display: grid; width: min(100%, 430px); min-height: 320px; align-items: end; justify-items: center; }
     .mascot-art::before { position: absolute; bottom: 20px; left: 50%; width: 260px; height: 260px; transform: translateX(-50%); border: 1px solid rgba(183,123,85,.24); border-radius: 50%; content: ''; }
     .mascot-art img { position: relative; z-index: 1; width: min(100%, 300px); max-height: 390px; object-fit: contain; filter: drop-shadow(0 18px 22px rgba(24,48,71,.12)); }
     .mascot-caption { position: relative; z-index: 2; margin-top: -1px; color: var(--muted); font-size: .62rem; font-weight: 700; letter-spacing: .16em; text-align: center; }
-    .mascot-copy .eyebrow { color: #946b51; }
-    .mascot-copy h2 { max-width: 610px; margin: 13px 0 14px; color: var(--navy-deep); font: 600 clamp(2.6rem, 4.8vw, 4.15rem)/.94 var(--editorial); letter-spacing: -.025em; }
-    .mascot-copy p { max-width: 520px; margin: 0; color: #596b78; font-size: .98rem; line-height: 1.75; }
-    .mascot-link { display: inline-block; margin-top: 23px; padding-bottom: 5px; border-bottom: 1px solid var(--orange); color: var(--navy); font-size: .77rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+    .mascot-copy { display: grid; justify-items: center; }
+    .mascot-link { display: inline-flex; width: max-content; min-height: 44px; align-items: center; justify-content: center; justify-self: center; margin-top: 0; padding: 10px 22px; border: 1px solid rgba(183,123,85,.72); border-radius: 999px; color: var(--navy); background: rgba(255,253,249,.76); box-shadow: 0 6px 16px rgba(24,48,71,.06); font-size: .8rem; font-weight: 700; letter-spacing: .06em; transition: background .2s ease, color .2s ease, transform .2s ease, border-color .2s ease; }
+    .mascot-link:hover { transform: translateY(-2px); border-color: var(--navy); color: white; background: var(--navy); }
 
     /* Mascote flutuante */
     .floating-mascot { position: fixed; right: clamp(8px, 2vw, 24px); bottom: max(14px, env(safe-area-inset-bottom)); z-index: 40; display: block; width: 118px; height: 175px; opacity: 0; visibility: hidden; pointer-events: none; transform: translate3d(0, 16px, 0) scale(.96); transform-origin: bottom center; transition: opacity .32s ease, transform .48s cubic-bezier(.2,.8,.2,1), visibility .32s; }
@@ -206,10 +205,11 @@
       .nav-links { gap: 15px; font-size: .81rem; }
       .nav .button { display: none; }
       .hero { min-height: 720px; background-position: right center; background-size: 76% auto; }
-      .mascot-layout { grid-template-columns: .78fr 1.22fr; gap: 28px; padding-inline: 38px; }
+      .mascot-layout { grid-template-columns: 1fr; gap: 12px; padding-inline: 38px; }
+      .mascot-copy { align-self: start; }
       .hero-content { width: min(370px, 48%); }
       .hero h1 { font-size: clamp(2.5rem, 5.8vw, 3.6rem); }
-      .hero::before { background: linear-gradient(90deg, rgba(8,35,59,.94) 0%, rgba(11,45,73,.76) 58%, rgba(11,45,73,.4) 100%); }
+      .hero::before { background: linear-gradient(90deg, rgba(8,35,59,.96) 0%, rgba(11,45,73,.9) 58%, rgba(11,45,73,.58) 100%), repeating-linear-gradient(135deg, rgba(224,239,249,.018) 0 1px, transparent 1px 7px); }
       .service-grid { grid-template-columns: repeat(2, 1fr); }
       .about-grid { gap: 44px; }
       .location-grid { gap: 24px; }
@@ -239,14 +239,17 @@
       .nav-links.open { display: grid; gap: 0; }
       .nav-links a { padding: 13px 0; border-bottom: 1px solid var(--line); font-size: .96rem; }
       .nav-links a:last-child { border-bottom: 0; }
-      .hero { min-height: max(620px, 177.78vw); align-items: flex-start; padding: 74px 0 48px; background: var(--navy-deep) url('assets/itacamp-hero-mobile-safe.webp') center top / auto 100% no-repeat; }
-      .hero::before { background: linear-gradient(180deg, rgba(8,35,59,.08) 0%, rgba(8,35,59,.08) 56%, rgba(8,35,59,.18) 100%); }
+      .hero { min-height: max(940px, 260vw); align-items: flex-start; padding: 84px 0 48px; background: var(--navy-deep) url('assets/itacamp-hero-mobile-safe.webp') center bottom / 100% auto no-repeat; }
+      .hero::before { background: linear-gradient(180deg, rgba(8,35,59,.78) 0%, rgba(8,35,59,.74) 42%, rgba(11,45,73,.48) 68%, rgba(11,45,73,.30) 100%), repeating-linear-gradient(135deg, rgba(224,239,249,.018) 0 1px, transparent 1px 7px); }
       .hero::after { display: none; }
       .hero-content { width: 100%; }
-      .hero h1 { margin: 12px 0 10px; font-size: clamp(2.1rem, 9.2vw, 2.5rem); }
-      .hero-lead, .hero .hero-note { display: none; }
-      .hero-actions { gap: 10px; margin-top: 12px; }
-      .hero-actions .button { width: auto; min-width: 0; min-height: 48px; flex: 1 1 0; padding-inline: 8px; font-size: .72rem; white-space: nowrap; }
+      .hero h1 { margin: 15px 0 13px; font-size: clamp(2.5rem, 10vw, 3.15rem); }
+      .hero-lead { max-width: 440px; font-size: 1rem; line-height: 1.62; }
+      .hero-actions { flex-direction: column; gap: 10px; margin-top: 20px; }
+      .hero-actions .button { width: 100%; min-height: 48px; }
+      .hero-note { display: grid; gap: 9px; margin-top: 22px; font-size: .8rem; }
+      .mascot-layout { gap: 8px; padding: 22px 20px 26px; }
+      .mascot-art { min-height: 255px; }
       .about-visual img { aspect-ratio: 1/1; border-radius: 28px; object-position: center; }
       .ribbon-inner { align-items: flex-start; flex-direction: column; justify-content: center; padding-block: 18px; }
       .ribbon-items { gap: 10px 16px; font-size: .83rem; }
@@ -316,16 +319,13 @@
       </div>
     </section>
 
-    <section class="mascot-section" id="mascote" aria-labelledby="mascot-title">
+    <section class="mascot-section" id="mascote" aria-label="Mascotes da Itacamp">
       <div class="wrap">
         <div class="mascot-layout">
           <div class="mascot-art">
             <img src="assets/itacamp-mascote-duo-site.webp" alt="Mascotes da Itacamp: um cão dourado e um gato laranja e branco juntos, com lenços azul-marinho e cobre" width="800" height="1000" loading="lazy" decoding="async">
           </div>
           <div class="mascot-copy">
-            <span class="eyebrow">Uma companhia que combina com a Itacamp</span>
-            <h2 id="mascot-title">Dois amigos para a família.</h2>
-            <p>Um cão e um gato juntos, representando acolhimento, confiança e carinho em cada etapa do cuidado.</p>
             <a class="mascot-link" href="#servicos">Conheça os serviços</a>
           </div>
         </div>
