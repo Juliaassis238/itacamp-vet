@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#123d63">
-  <meta name="description" content="Itacamp Clínica Veterinária em Campinas/SP. Consultas, cirurgias, banho e tosa, vacinas importadas e farmácia pet. Rua Pereira Tangerino, 389 — Jardim Guanabara.">
+  <meta name="description" content="Itacamp Clínica Veterinária em Campinas/SP. Consultório veterinário, vacinação, cirurgia, banho e tosa e farmácia pet. Rua Pereira Tangerino, 389.">
   <meta property="og:title" content="Itacamp Clínica Veterinária | Campinas-SP">
-  <meta property="og:description" content="Cuidado veterinário, banho e tosa e farmácia pet no Jardim Guanabara, Campinas.">
+  <meta property="og:description" content="Consultório veterinário, vacinação, cirurgia, banho e tosa e farmácia pet no Jardim Guanabara, Campinas.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://juliaassis238.github.io/itacamp-vet/assets/itacamp-capa-facebook.jpg">
   <link rel="canonical" href="https://juliaassis238.github.io/itacamp-vet/">
-  <link rel="preload" as="image" href="assets/itacamp-hero.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/itacamp-hero-desktop-safe.webp" media="(min-width: 681px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/itacamp-hero-mobile-safe.webp" media="(max-width: 680px)" fetchpriority="high">
   <title>Itacamp Clínica Veterinária | Campinas-SP</title>
   <link rel="icon" type="image/png" href="assets/itacamp-favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,6 +54,8 @@
     .button:hover { transform: translateY(-2px); }
     .button-primary { color: var(--white); background: var(--orange); box-shadow: 0 8px 20px rgba(183, 123, 85, .18); }
     .button-primary:hover { background: #986544; }
+    .button-whatsapp { color: var(--white); background: #276e5c; box-shadow: 0 8px 20px rgba(39, 110, 92, .18); }
+    .button-whatsapp:hover { background: #205b4d; }
     .button-light { color: var(--navy); background: var(--white); }
     .button-outline { color: var(--navy); border-color: #cdbbae; background: transparent; }
     .button-outline:hover { background: var(--blue-pale); }
@@ -71,9 +74,9 @@
     .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 9px; color: var(--navy); background: white; cursor: pointer; }
 
     /* Destaque */
-    .hero { position: relative; display: flex; min-height: min(780px, 100svh); align-items: center; overflow: hidden; padding: 130px 0 74px; color: white; background: var(--navy-deep) url('assets/itacamp-hero.jpg') center 52%/cover no-repeat; }
+    .hero { position: relative; display: flex; min-height: min(780px, 100svh); align-items: center; overflow: hidden; padding: 130px 0 74px; color: white; background: var(--navy-deep) url('assets/itacamp-hero-desktop-safe.webp') right center / auto 100% no-repeat; }
     .hero::before { position: absolute; inset: 0; content: ''; background: linear-gradient(90deg, rgba(8, 35, 59, .94) 0%, rgba(11, 45, 73, .82) 40%, rgba(11, 45, 73, .24) 100%); }
-    .hero::after { position: absolute; right: -100px; bottom: -170px; width: 450px; height: 450px; border: 1px solid rgba(255,255,255,.17); border-radius: 50%; content: ''; }
+    .hero::after { display: none; }
     .hero-content { position: relative; z-index: 1; width: min(670px, 72%); }
     .hero .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: #ffd0a9; }
     .hero .eyebrow::before { width: 24px; height: 2px; content: ''; background: var(--orange); }
@@ -138,7 +141,7 @@
     .about-grid { display: grid; grid-template-columns: .95fr 1.05fr; align-items: center; gap: clamp(42px, 8vw, 100px); }
     .about-visual { position: relative; padding: 0 18px 18px 0; }
     .about-visual::after { position: absolute; right: 0; bottom: 0; z-index: 0; width: 70%; height: 68%; border-radius: 24px; content: ''; background: var(--orange); }
-    .about-visual img { position: relative; z-index: 1; width: 100%; aspect-ratio: 4/5; border-radius: 20px; object-fit: cover; object-position: center; box-shadow: var(--shadow); }
+    .about-visual img { position: relative; z-index: 1; width: 100%; height: auto; aspect-ratio: 1/1; border-radius: 20px; object-fit: cover; object-position: center; box-shadow: var(--shadow); }
     .about-copy h2 { margin: 12px 0 20px; color: var(--navy-deep); font: 600 clamp(2.5rem, 4.5vw, 3.8rem)/.98 var(--editorial); letter-spacing: -.025em; }
     .about-copy p { color: #53697b; font-size: 1rem; line-height: 1.8; }
     .about-name { display: flex; align-items: flex-start; gap: 14px; margin-top: 28px; padding-top: 22px; border-top: 1px solid #c8dce7; }
@@ -202,15 +205,21 @@
     @media (max-width: 900px) {
       .nav-links { gap: 15px; font-size: .81rem; }
       .nav .button { display: none; }
-      .hero { min-height: 720px; background-position: 58% center; }
+      .hero { min-height: 720px; background-position: right center; background-size: 76% auto; }
       .mascot-layout { grid-template-columns: .78fr 1.22fr; gap: 28px; padding-inline: 38px; }
-      .hero-content { width: min(680px, 90%); }
+      .hero-content { width: min(370px, 48%); }
+      .hero h1 { font-size: clamp(2.5rem, 5.8vw, 3.6rem); }
       .hero::before { background: linear-gradient(90deg, rgba(8,35,59,.94) 0%, rgba(11,45,73,.76) 58%, rgba(11,45,73,.4) 100%); }
       .service-grid { grid-template-columns: repeat(2, 1fr); }
       .about-grid { gap: 44px; }
       .location-grid { gap: 24px; }
       .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .gallery-card img { height: 220px; }
+    }
+    @media (min-width: 901px) and (max-width: 1100px) {
+      .hero { background-position: right center; background-size: 76% auto; }
+      .hero-content { width: min(410px, 48%); }
+      .hero h1 { font-size: clamp(2.7rem, 5.5vw, 3.5rem); }
     }
     @media (max-width: 680px) {
       .wrap { width: min(100% - 36px, 540px); }
@@ -230,13 +239,15 @@
       .nav-links.open { display: grid; gap: 0; }
       .nav-links a { padding: 13px 0; border-bottom: 1px solid var(--line); font-size: .96rem; }
       .nav-links a:last-child { border-bottom: 0; }
-      .hero { min-height: 720px; align-items: flex-start; padding: 142px 0 66px; background-position: 62% center; }
-      .hero::before { background: linear-gradient(90deg, rgba(8,35,59,.94) 0%, rgba(11,45,73,.79) 68%, rgba(11,45,73,.44) 100%); }
+      .hero { min-height: max(620px, 177.78vw); align-items: flex-start; padding: 74px 0 48px; background: var(--navy-deep) url('assets/itacamp-hero-mobile-safe.webp') center top / auto 100% no-repeat; }
+      .hero::before { background: linear-gradient(180deg, rgba(8,35,59,.08) 0%, rgba(8,35,59,.08) 56%, rgba(8,35,59,.18) 100%); }
+      .hero::after { display: none; }
       .hero-content { width: 100%; }
-      .hero h1 { font-size: clamp(2.75rem, 13vw, 4rem); }
-      .hero-lead { max-width: 440px; font-size: 1rem; }
-      .hero-actions .button { width: 100%; }
-      .hero-note { display: grid; gap: 11px; margin-top: 25px; }
+      .hero h1 { margin: 12px 0 10px; font-size: clamp(2.1rem, 9.2vw, 2.5rem); }
+      .hero-lead, .hero .hero-note { display: none; }
+      .hero-actions { gap: 10px; margin-top: 12px; }
+      .hero-actions .button { width: auto; min-width: 0; min-height: 48px; flex: 1 1 0; padding-inline: 8px; font-size: .72rem; white-space: nowrap; }
+      .about-visual img { aspect-ratio: 1/1; border-radius: 28px; object-position: center; }
       .ribbon-inner { align-items: flex-start; flex-direction: column; justify-content: center; padding-block: 18px; }
       .ribbon-items { gap: 10px 16px; font-size: .83rem; }
       .service-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -290,33 +301,31 @@
         <div class="hero-content">
           <span class="eyebrow">Campinas · Jardim Guanabara</span>
           <h1 id="hero-title">Cuidado de verdade para quem <span>faz parte da família.</span></h1>
-          <p class="hero-lead">Clínica veterinária, banho e tosa e farmácia pet em um só lugar. Fale com a Itacamp para agendar e consultar os serviços disponíveis para o seu pet.</p>
+          <p class="hero-lead">Consultório veterinário, vacinação, cirurgia, banho e tosa e farmácia pet em um só lugar. Fale com a Itacamp para agendar e consultar os serviços disponíveis para o seu pet.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="tel:+551932134400">
-              Ligar para agendar
+            <a class="button button-whatsapp" href="https://wa.me/5519997914145?text=Ol%C3%A1%2C%20Itacamp!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" rel="noopener noreferrer" aria-label="Chamar a Itacamp no WhatsApp pelo número (19) 99791-4145">
+              Falar pelo WhatsApp
             </a>
             <a class="button button-light" href="#servicos">Conhecer serviços</a>
           </div>
           <div class="hero-note">
             <span>Rua Pereira Tangerino, 389</span>
-            <span>Agendamento por telefone</span>
+            <span>Agendamento pelo WhatsApp</span>
           </div>
         </div>
       </div>
-      <span class="hero-photo-note">Imagem ilustrativa</span>
     </section>
 
     <section class="mascot-section" id="mascote" aria-labelledby="mascot-title">
       <div class="wrap">
         <div class="mascot-layout">
           <div class="mascot-art">
-            <img src="assets/itacamp-mascote-site-optimized.webp" alt="Ilustração original de um cão mascote da Itacamp, com lenço azul-marinho e acabamento cobre" width="720" height="1067" loading="lazy">
-            <span class="mascot-caption">NOVO MASCOTE ITACAMP</span>
+            <img src="assets/itacamp-mascote-duo-site.webp" alt="Mascotes da Itacamp: um cão dourado e um gato laranja e branco juntos, com lenços azul-marinho e cobre" width="800" height="1000" loading="lazy" decoding="async">
           </div>
           <div class="mascot-copy">
             <span class="eyebrow">Uma companhia que combina com a Itacamp</span>
-            <h2 id="mascot-title">Um novo amigo para a família.</h2>
-            <p>Apresentamos o mascote criado para a Itacamp: um personagem que traduz acolhimento, confiança e carinho em cada etapa do cuidado.</p>
+            <h2 id="mascot-title">Dois amigos para a família.</h2>
+            <p>Um cão e um gato juntos, representando acolhimento, confiança e carinho em cada etapa do cuidado.</p>
             <a class="mascot-link" href="#servicos">Conheça os serviços</a>
           </div>
         </div>
@@ -326,7 +335,7 @@
     <div class="service-ribbon" aria-label="Áreas de atendimento">
       <div class="wrap ribbon-inner">
         <span class="ribbon-label">Na Itacamp você encontra</span>
-        <div class="ribbon-items"><span>Clínica veterinária</span><span>Banho e tosa</span><span>Farmácia pet</span></div>
+        <div class="ribbon-items"><span>Consultório veterinário</span><span>Vacinação e cirurgia</span><span>Banho e tosa</span><span>Farmácia pet</span></div>
       </div>
     </div>
 
@@ -341,11 +350,11 @@
         <div class="service-grid">
           <article class="service-card">
             <span class="service-number">01</span>
-            <h3>Consultas veterinárias</h3><p>Atendimento veterinário para orientar os cuidados do seu pet. Consulte a equipe sobre disponibilidade e agendamento.</p>
+            <h3>Consultório veterinário</h3><p>Atendimento veterinário para orientar os cuidados do seu pet. Consulte a equipe sobre disponibilidade e agendamento.</p>
           </article>
           <article class="service-card">
             <span class="service-number">02</span>
-            <h3>Cirurgias</h3><p>A clínica anuncia a realização de cirurgias. Converse com a equipe para informações sobre avaliação e procedimentos.</p>
+            <h3>Cirurgia</h3><p>Serviço indicado após avaliação veterinária. Converse com a equipe para informações sobre procedimentos e disponibilidade.</p>
           </article>
           <article class="service-card">
             <span class="service-number">03</span>
@@ -353,11 +362,11 @@
           </article>
           <article class="service-card">
             <span class="service-number">04</span>
-            <h3>Vacinas importadas</h3><p>Vacinas importadas estão entre os serviços anunciados. Consulte a clínica sobre disponibilidade e protocolo indicado ao seu pet.</p>
+            <h3>Vacinação</h3><p>Consulte a clínica sobre as vacinas disponíveis e o protocolo indicado ao seu pet.</p>
           </article>
           <article class="service-card">
             <span class="service-number">05</span>
-            <h3>Farmácia pet</h3><p>Farmácia pet no mesmo endereço. Entre em contato para confirmar produtos e disponibilidade.</p>
+            <h3>Farmácia pet</h3><p>Serviço também divulgado nos canais oficiais da clínica. Entre em contato para confirmar produtos e disponibilidade.</p>
           </article>
         </div>
       </div>
@@ -366,13 +375,13 @@
     <section class="section about" id="sobre" aria-labelledby="about-title">
       <div class="wrap about-grid">
         <div class="about-visual">
-          <img src="assets/site-itacamp-recepcao.webp" alt="Recepção e área interna da clínica Itacamp, com mesa de atendimento e plantas" width="1801" height="873" loading="lazy">
+          <img src="assets/itacamp-pets-square.webp" alt="Cachorro dourado e gato laranja e branco sentados juntos em um ambiente veterinário" width="1100" height="1100" loading="lazy" decoding="async">
         </div>
         <div class="about-copy">
           <div class="accent-line"></div>
           <span class="eyebrow">Sobre a Itacamp</span>
           <h2 id="about-title">Um endereço para cuidar de quem está sempre ao seu lado.</h2>
-          <p>A Itacamp reúne atendimento veterinário, banho e tosa e farmácia pet no Jardim Guanabara, em Campinas. A clínica também divulga estacionamento próprio.</p>
+          <p>A Itacamp reúne consultório veterinário, vacinação, cirurgia, banho e tosa e farmácia pet no Jardim Guanabara, em Campinas. A clínica também divulga estacionamento próprio.</p>
           <p>Os detalhes de cada atendimento, os horários e a disponibilidade dos serviços podem ser confirmados diretamente com a equipe por telefone.</p>
           <div class="about-name"><span class="dot" aria-hidden="true"></span><div><strong>Itacamp Clínica Veterinária</strong><span>Rua Pereira Tangerino, 389<br>Jardim Guanabara · Campinas/SP</span></div></div>
         </div>
@@ -432,12 +441,16 @@
               <div><small>Telefone / agendamento</small><a href="tel:+551932134400">(19) 3213-4400</a></div>
             </div>
             <div class="contact-row">
+              <div><small>WhatsApp</small><a href="https://wa.me/5519997914145?text=Ol%C3%A1%2C%20Itacamp!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" rel="noopener noreferrer">(19) 99791-4145</a></div>
+            </div>
+            <div class="contact-row">
               <div><small>Contato alternativo</small><a href="tel:+551932134404">(19) 3213-4404</a></div>
             </div>
             <div class="contact-row">
               <div><small>Como chegar</small><a href="https://www.google.com/maps/search/?api=1&amp;query=Itacamp+Cl%C3%ADnica+Veterin%C3%A1ria%2C+Rua+Pereira+Tangerino+389%2C+Campinas" target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a></div>
             </div>
 
+            <a class="button button-whatsapp address-whatsapp" href="https://wa.me/5519997914145?text=Ol%C3%A1%2C%20Itacamp!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" rel="noopener noreferrer">Conversar pelo WhatsApp</a>
             <a class="button button-outline" href="https://www.instagram.com/itacampclinica/" target="_blank" rel="noopener noreferrer">Ver Instagram da Itacamp</a>
           </div>
           <div class="map-preview">
@@ -474,8 +487,8 @@
           </div>
         </div>
         <div class="contact-strip" id="contato">
-          <div><h3>Vamos conversar sobre o seu pet?</h3><p>Ligue para a Itacamp e consulte a equipe sobre agendamentos e serviços.</p></div>
-          <a class="button button-primary" href="tel:+551932134400">Ligar (19) 3213-4400</a>
+          <div><h3>Vamos conversar sobre o seu pet?</h3><p>Chame a equipe da Itacamp no WhatsApp para consultar horários, agendamentos e serviços.</p></div>
+          <a class="button button-whatsapp" href="https://wa.me/5519997914145?text=Ol%C3%A1%2C%20Itacamp!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>
         </div>
       </div>
     </section>
@@ -491,9 +504,8 @@
     </div>
   </footer>
 
-  <a class="floating-mascot" id="floatingMascot" href="#mascote" aria-label="Voltar à seção do mascote Itacamp">
-    <span class="floating-mascot-label" aria-hidden="true">Seu amigo da Itacamp</span>
-    <img src="assets/itacamp-mascote-site-optimized.webp" alt="" width="720" height="1067" loading="eager" decoding="async">
+  <a class="floating-mascot" id="floatingMascot" href="#mascote" aria-label="Ir à seção dos mascotes da Itacamp">
+    <img src="assets/itacamp-mascote-duo-site.webp" alt="" width="800" height="1000" loading="eager" decoding="async">
   </a>
 
   <script>
@@ -502,11 +514,15 @@
     const navLinks = document.getElementById('navLinks');
     const mascotSection = document.getElementById('mascote');
     const floatingMascot = document.getElementById('floatingMascot');
+    const aboutVisual = document.querySelector('.about-visual');
     const updateScrollState = () => {
       header.classList.toggle('scrolled', window.scrollY > 24);
-      floatingMascot.classList.toggle('is-visible', mascotSection.getBoundingClientRect().bottom < 0);
+      const photoBounds = aboutVisual.getBoundingClientRect();
+      const photoVisibleOnPhone = window.matchMedia('(max-width: 680px)').matches && photoBounds.top < window.innerHeight && photoBounds.bottom > 0;
+      floatingMascot.classList.toggle('is-visible', mascotSection.getBoundingClientRect().bottom < 0 && !photoVisibleOnPhone);
     };
     window.addEventListener('scroll', updateScrollState, { passive: true });
+    window.addEventListener('resize', updateScrollState, { passive: true });
     updateScrollState();
     menuToggle.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('open');
