@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/pannellum.css">
   <style>
     :root {
       --navy: #123d63;
@@ -157,6 +158,59 @@
     .gallery-card:nth-child(6) img { object-fit: contain; background: var(--blue-pale); }
     .gallery-caption { padding: 16px 18px; color: var(--muted); background: white; font-size: .82rem; line-height: 1.55; }
     .gallery-caption strong { display: block; margin-bottom: 4px; color: var(--navy); font: 600 1.2rem/1.1 var(--editorial); }
+
+    /* Tour panorâmico 360° */
+    .tour360 { margin-top: 72px; padding: clamp(22px, 4.5vw, 52px); border: 1px solid rgba(18,61,99,.10); border-radius: 22px; background: linear-gradient(135deg, rgba(237,242,243,.96), rgba(251,248,243,.98)); box-shadow: 0 18px 48px rgba(24,48,71,.07); }
+    .tour360-heading { max-width: 700px; margin-bottom: 28px; }
+    .tour360-heading h3 { margin: 10px 0 8px; color: var(--navy-deep); font: 600 clamp(2rem, 4vw, 3rem)/.98 var(--editorial); letter-spacing: -.025em; }
+    .tour360-heading p { margin: 0; color: var(--muted); font-size: .96rem; line-height: 1.7; }
+    .tour360-stage { position: relative; isolation: isolate; overflow: hidden; aspect-ratio: 1.9 / 1; min-height: 280px; border: 1px solid rgba(255,255,255,.78); border-radius: 17px; background: #0c263b; box-shadow: 0 18px 40px rgba(16,43,66,.16); }
+    .tour360-poster { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .tour360-poster[hidden] { display: none; }
+    .tour360-viewer { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; background: #0c263b; }
+    .tour360-viewer[hidden] { display: none; }
+    .tour360-launch { position: absolute; top: 50%; left: 50%; z-index: 3; display: inline-flex; align-items: center; gap: 13px; min-height: 60px; padding: 10px 23px 10px 12px; border: 1px solid rgba(255,255,255,.72); border-radius: 999px; color: var(--navy-deep); background: rgba(255,253,249,.96); box-shadow: 0 12px 32px rgba(8,35,59,.25); cursor: pointer; transform: translate(-50%, -50%); transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .tour360-launch:hover { transform: translate(-50%, -50%) scale(1.035); background: #fff; box-shadow: 0 16px 38px rgba(8,35,59,.3); }
+    .tour360-launch[hidden], .tour360-close[hidden] { display: none; }
+    .tour360-launch-mark { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 50%; color: white; background: var(--navy); font: 700 .72rem var(--display); letter-spacing: -.04em; }
+    .tour360-launch-copy { font-size: .86rem; font-weight: 700; letter-spacing: .01em; }
+    .tour360-arrow { position: absolute; top: 50%; z-index: 4; display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid rgba(255,255,255,.76); border-radius: 50%; color: var(--navy); background: rgba(255,253,249,.94); box-shadow: 0 6px 18px rgba(8,35,59,.18); cursor: pointer; transform: translateY(-50%); transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
+    .tour360-arrow:hover { transform: translateY(-50%) scale(1.07); background: #fff; box-shadow: 0 10px 24px rgba(8,35,59,.24); }
+    .tour360-arrow:disabled { opacity: .45; cursor: default; }
+    .tour360-arrow--prev { left: clamp(12px, 2.5vw, 28px); }
+    .tour360-arrow--next { right: clamp(12px, 2.5vw, 28px); }
+    .tour360-arrow svg { width: 19px; height: 19px; }
+    .tour360-launch:focus-visible, .tour360-arrow:focus-visible, .tour360-dot:focus-visible, .tour360-close:focus-visible { outline: 3px solid #e4b58f; outline-offset: 3px; }
+    .tour360-footer { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding-top: 22px; }
+    .tour360-caption { min-width: 0; }
+    .tour360-caption-kicker { display: block; margin-bottom: 5px; color: #9b6b4d; font-size: .66rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+    .tour360-caption strong { display: block; color: var(--navy); font: 600 1.45rem/1.05 var(--editorial); }
+    .tour360-hint { display: block; margin-top: 6px; color: var(--muted); font-size: .78rem; line-height: 1.45; }
+    .tour360-navigation { display: flex; flex: 0 0 auto; align-items: center; gap: 15px; }
+    .tour360-count { min-width: 55px; color: var(--navy); font: 700 .76rem var(--display); font-variant-numeric: tabular-nums; letter-spacing: .06em; text-align: right; }
+    .tour360-dots { display: flex; align-items: center; gap: 7px; }
+    .tour360-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 99px; background: #b9c8d2; cursor: pointer; transition: width .2s ease, background .2s ease, transform .2s ease; }
+    .tour360-dot:hover { transform: scale(1.18); background: #7c9aaf; }
+    .tour360-dot[aria-current="true"] { width: 24px; background: var(--orange); }
+    .tour360-close { margin-top: 16px; padding: 9px 14px; border: 1px solid rgba(18,61,99,.22); border-radius: 999px; color: var(--navy); background: rgba(255,255,255,.55); font-size: .76rem; font-weight: 700; cursor: pointer; }
+    .tour360-close:hover { background: white; }
+    @media (max-width: 680px) {
+      .tour360 { margin-top: 54px; padding: 20px 16px 18px; border-radius: 17px; }
+      .tour360-heading { margin-bottom: 20px; }
+      .tour360-stage { aspect-ratio: 1.25 / 1; min-height: 240px; border-radius: 13px; }
+      .tour360-arrow { width: 42px; height: 42px; }
+      .tour360-arrow--prev { left: 10px; }
+      .tour360-arrow--next { right: 10px; }
+      .tour360-launch { gap: 9px; min-height: 54px; padding: 8px 16px 8px 9px; white-space: nowrap; }
+      .tour360-launch-mark { width: 36px; height: 36px; }
+      .tour360-launch-copy { font-size: .78rem; }
+      .tour360-footer { align-items: flex-start; flex-direction: column; gap: 15px; padding-top: 17px; }
+      .tour360-navigation { width: 100%; justify-content: space-between; gap: 10px; }
+      .tour360-dots { gap: 6px; }
+      .tour360-dot { width: 7px; height: 7px; }
+      .tour360-dot[aria-current="true"] { width: 18px; }
+      .tour360-count { min-width: 48px; }
+    }
 
     /* Localização e contato */
     .location { background: rgba(251,248,243,.93); }
@@ -425,6 +479,40 @@
             <figcaption class="gallery-caption"><strong>Identidade da clínica</strong>Letreiro da Itacamp.</figcaption>
           </figure>
         </div>
+        <div class="tour360" aria-labelledby="tour360-title">
+          <div class="tour360-heading">
+            <span class="eyebrow">Visita panorâmica</span>
+            <h3 id="tour360-title">Explore a Itacamp em 360°</h3>
+            <p>Um passeio pelos ambientes da clínica. Escolha uma vista e arraste a imagem para conhecer cada detalhe.</p>
+          </div>
+          <div class="tour360-stage" id="tour360Stage" tabindex="0" aria-label="Carrossel de fotos panorâmicas da clínica">
+            <img class="tour360-poster" id="tour360Poster" src="assets/panoramas/clinic-360-01.webp" alt="Vista panorâmica 360° da recepção da Itacamp" width="2400" height="1200" loading="lazy" decoding="async">
+            <div class="tour360-viewer" id="tour360Viewer" aria-label="Visualizador interativo 360° da clínica" hidden></div>
+            <button class="tour360-launch" id="tour360Launch" type="button" aria-label="Abrir visão 360 graus da recepção">
+              <span class="tour360-launch-mark" aria-hidden="true">360°</span>
+              <span class="tour360-launch-copy">Gire para conhecer</span>
+            </button>
+            <button class="tour360-arrow tour360-arrow--prev" id="tour360Prev" type="button" aria-label="Ver ambiente anterior">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="tour360-arrow tour360-arrow--next" id="tour360Next" type="button" aria-label="Ver próximo ambiente">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="tour360-footer">
+            <div class="tour360-caption" aria-live="polite">
+              <span class="tour360-caption-kicker">Vista <span id="tour360CountLabel">01 / 14</span></span>
+              <strong id="tour360Caption">Recepção</strong>
+              <span class="tour360-hint" id="tour360Hint">Toque em “Gire para conhecer” para explorar a foto em 360°.</span>
+            </div>
+            <div class="tour360-navigation">
+              <div class="tour360-dots" id="tour360Dots" role="group" aria-label="Escolher uma vista panorâmica"></div>
+              <span class="tour360-count" id="tour360Count" aria-hidden="true">01 / 14</span>
+            </div>
+          </div>
+          <button class="tour360-close" id="tour360Close" type="button" hidden>Fechar visão 360°</button>
+          <span class="tour360-hint" id="tour360Status" role="status" aria-live="polite"></span>
+        </div>
       </div>
     </section>
 
@@ -522,7 +610,9 @@
       header.classList.toggle('scrolled', window.scrollY > 24);
       const photoBounds = aboutVisual.getBoundingClientRect();
       const photoVisibleOnPhone = window.matchMedia('(max-width: 680px)').matches && photoBounds.top < window.innerHeight && photoBounds.bottom > 0;
-      floatingMascot.classList.toggle('is-visible', mascotSection.getBoundingClientRect().bottom < 0 && !photoVisibleOnPhone);
+      const tourBounds = document.querySelector('.tour360').getBoundingClientRect();
+      const tourVisible = tourBounds.top < window.innerHeight && tourBounds.bottom > 0;
+      floatingMascot.classList.toggle('is-visible', mascotSection.getBoundingClientRect().bottom < 0 && !photoVisibleOnPhone && !tourVisible);
     };
     window.addEventListener('scroll', updateScrollState, { passive: true });
     window.addEventListener('resize', updateScrollState, { passive: true });
@@ -538,6 +628,155 @@
       menuToggle.setAttribute('aria-label', 'Abrir menu');
     }));
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const tourScenes = [
+      { file: 'clinic-360-01.webp', title: 'Recepção', alt: 'Vista panorâmica 360° da recepção da Itacamp' },
+      { file: 'clinic-360-02.webp', title: 'Balcão e produtos', alt: 'Vista panorâmica 360° do balcão e dos produtos da clínica' },
+      { file: 'clinic-360-03.webp', title: 'Sala de atendimento', alt: 'Vista panorâmica 360° de uma sala de atendimento veterinário' },
+      { file: 'clinic-360-04.webp', title: 'Área externa', alt: 'Vista panorâmica 360° da área externa da clínica' },
+      { file: 'clinic-360-05.webp', title: 'Consultório', alt: 'Vista panorâmica 360° de um consultório veterinário' },
+      { file: 'clinic-360-06.webp', title: 'Sala de exames', alt: 'Vista panorâmica 360° de uma sala de exames' },
+      { file: 'clinic-360-07.webp', title: 'Atendimento veterinário', alt: 'Vista panorâmica 360° de uma sala de atendimento veterinário' },
+      { file: 'clinic-360-08.webp', title: 'Ambiente interno', alt: 'Vista panorâmica 360° de um ambiente interno da clínica' },
+      { file: 'clinic-360-09.webp', title: 'Corredor e recepção', alt: 'Vista panorâmica 360° do corredor e da recepção' },
+      { file: 'clinic-360-10.webp', title: 'Entrada e estacionamento', alt: 'Vista panorâmica 360° da entrada e do estacionamento' },
+      { file: 'clinic-360-11.webp', title: 'Acesso à clínica', alt: 'Vista panorâmica 360° do acesso à clínica' },
+      { file: 'clinic-360-12.webp', title: 'Entorno da unidade', alt: 'Vista panorâmica 360° do entorno da Itacamp' },
+      { file: 'clinic-360-13.webp', title: 'Entrada principal', alt: 'Vista panorâmica 360° da entrada principal da clínica' },
+      { file: 'clinic-360-14.webp', title: 'Sala de espera', alt: 'Vista panorâmica 360° da sala de espera da Itacamp' }
+    ];
+    const tourStage = document.getElementById('tour360Stage');
+    const tourPoster = document.getElementById('tour360Poster');
+    const tourViewerElement = document.getElementById('tour360Viewer');
+    const tourCaption = document.getElementById('tour360Caption');
+    const tourCount = document.getElementById('tour360Count');
+    const tourCountLabel = document.getElementById('tour360CountLabel');
+    const tourHint = document.getElementById('tour360Hint');
+    const tourStatus = document.getElementById('tour360Status');
+    const tourDots = document.getElementById('tour360Dots');
+    const tourLaunch = document.getElementById('tour360Launch');
+    const tourClose = document.getElementById('tour360Close');
+    let activeTourIndex = 0;
+    let tourViewer = null;
+    let pannellumLoad = null;
+
+    const scenePath = scene => `assets/panoramas/${scene.file}`;
+    const sceneId = index => `vista-${index + 1}`;
+    const loadPannellum = () => {
+      if (window.pannellum) return Promise.resolve();
+      if (pannellumLoad) return pannellumLoad;
+      pannellumLoad = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'assets/pannellum.js';
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error('Não foi possível carregar o visualizador 360°.'));
+        document.head.appendChild(script);
+      });
+      return pannellumLoad;
+    };
+    const setTourScene = index => {
+      activeTourIndex = (index + tourScenes.length) % tourScenes.length;
+      const scene = tourScenes[activeTourIndex];
+      const number = String(activeTourIndex + 1).padStart(2, '0');
+      const total = String(tourScenes.length).padStart(2, '0');
+      tourPoster.src = scenePath(scene);
+      tourPoster.alt = scene.alt;
+      tourCaption.textContent = scene.title;
+      tourCount.textContent = `${number} / ${total}`;
+      tourCountLabel.textContent = `${number} / ${total}`;
+      tourLaunch.setAttribute('aria-label', `Abrir visão 360 graus: ${scene.title}`);
+      [...tourDots.children].forEach((dot, dotIndex) => {
+        dot.setAttribute('aria-current', String(dotIndex === activeTourIndex));
+      });
+      if (tourViewer) tourViewer.loadScene(sceneId(activeTourIndex));
+    };
+    tourScenes.forEach((scene, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'tour360-dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Abrir vista ${index + 1}: ${scene.title}`);
+      dot.setAttribute('aria-current', String(index === 0));
+      dot.addEventListener('click', () => setTourScene(index));
+      tourDots.appendChild(dot);
+    });
+    document.getElementById('tour360Prev').addEventListener('click', () => setTourScene(activeTourIndex - 1));
+    document.getElementById('tour360Next').addEventListener('click', () => setTourScene(activeTourIndex + 1));
+    tourLaunch.addEventListener('click', async () => {
+      tourLaunch.disabled = true;
+      tourStatus.textContent = 'Preparando o passeio…';
+      try {
+        await loadPannellum();
+        tourViewerElement.hidden = false;
+        tourPoster.hidden = true;
+        tourLaunch.hidden = true;
+        tourClose.hidden = false;
+        if (!tourViewer) {
+          const scenes = Object.fromEntries(tourScenes.map((scene, index) => [sceneId(index), {
+            type: 'equirectangular',
+            panorama: scenePath(scene),
+            title: scene.title,
+            yaw: 0,
+            pitch: 0,
+            hfov: 100,
+            minHfov: 50,
+            maxHfov: 120
+          }]));
+          tourViewer = window.pannellum.viewer('tour360Viewer', {
+            default: {
+              firstScene: sceneId(activeTourIndex),
+              sceneFadeDuration: 500,
+              autoLoad: true,
+              showZoomCtrl: true,
+              showFullscreenCtrl: true,
+              keyboardZoom: true,
+              mouseZoom: true
+            },
+            scenes
+          });
+        } else {
+          tourViewer.loadScene(sceneId(activeTourIndex));
+        }
+        tourHint.textContent = 'Arraste para girar; use a roda do mouse ou dois dedos para aproximar.';
+        tourStatus.textContent = '';
+      } catch (error) {
+        tourViewerElement.hidden = true;
+        tourPoster.hidden = false;
+        tourLaunch.hidden = false;
+        tourClose.hidden = true;
+        tourStatus.textContent = 'Não foi possível abrir a visão 360° agora. Tente novamente.';
+      } finally {
+        tourLaunch.disabled = false;
+      }
+    });
+    tourClose.addEventListener('click', () => {
+      if (tourViewer) {
+        tourViewer.destroy();
+        tourViewer = null;
+      }
+      tourViewerElement.hidden = true;
+      tourPoster.hidden = false;
+      tourLaunch.hidden = false;
+      tourClose.hidden = true;
+      tourHint.textContent = 'Toque em “Gire para conhecer” para explorar a foto em 360°.';
+      tourStatus.textContent = '';
+      tourLaunch.focus();
+    });
+    let tourTouchStartX = null;
+    tourStage.addEventListener('touchstart', event => {
+      if (!tourViewer) tourTouchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+    tourStage.addEventListener('touchend', event => {
+      if (tourViewer || tourTouchStartX === null) return;
+      const deltaX = event.changedTouches[0].clientX - tourTouchStartX;
+      if (Math.abs(deltaX) > 55) setTourScene(activeTourIndex + (deltaX < 0 ? 1 : -1));
+      tourTouchStartX = null;
+    }, { passive: true });
+    tourStage.addEventListener('keydown', event => {
+      if (tourViewer) return;
+      if (event.key === 'ArrowLeft') { event.preventDefault(); setTourScene(activeTourIndex - 1); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); setTourScene(activeTourIndex + 1); }
+    });
   </script>
 </body>
 </html>
